@@ -13,6 +13,7 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 
+[ExecuteAlways]
 public class Outline : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
 
@@ -153,8 +154,8 @@ public class Outline : MonoBehaviour {
   void OnDestroy() {
 
     // Destroy material instances
-    Destroy(outlineMaskMaterial);
-    Destroy(outlineFillMaterial);
+    DestroyImmediate(outlineMaskMaterial);
+    DestroyImmediate(outlineFillMaterial);
   }
 
   void Bake() {
