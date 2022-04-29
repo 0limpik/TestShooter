@@ -6,7 +6,8 @@ namespace TestShooter.Scripts
     [RequireComponent(typeof(Collider))]
     internal class TriggerScript : MonoBehaviour
     {
-        public event Action<Collider> OnTrigger;
+        public event Action<Collider> OnTriggerEnterEvent;
+        public event Action<Collider> OnTriggerExitEvent;
 
         private Collider _collider;
 
@@ -17,7 +18,11 @@ namespace TestShooter.Scripts
 
         void OnTriggerEnter(Collider other)
         {
-            OnTrigger?.Invoke(other);
+            OnTriggerEnterEvent?.Invoke(other);
+        }
+        void OnTriggerExit(Collider other)
+        {
+            OnTriggerExitEvent?.Invoke(other);
         }
     }
 }

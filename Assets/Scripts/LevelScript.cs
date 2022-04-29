@@ -22,10 +22,13 @@ namespace TestShooter.Scripts
 
         public List<UnitScript> Units { get; private set; }
 
+        private bool inFinishTrigger;
+
         void Awake()
         {
             Units = GameObject.FindObjectsOfType<UnitScript>().ToList();
-            _finishTrigger.OnTrigger += FinishCollider_OnTrigger;
+            _finishTrigger.OnTriggerEnterEvent += FinishCollider_OnTriggerEnter;
+            _finishTrigger.OnTriggerExitEvent += _finishTrigger_OnTriggerExit; ;
         }
 
         void Start()
@@ -33,23 +36,31 @@ namespace TestShooter.Scripts
             OnStart?.Invoke();
         }
 
-        private void FinishCollider_OnTrigger(Collider collider)
+        private void FinishCollider_OnTriggerEnter(Collider collider)
         {
             if (collider.gameObject == _playerUnit)
-                if (!gameEnd)
-                {
-                    OnEnterFinish?.Invoke();
-                    EndGame();
-                }
+                inFinishTrigger = true;
+        }
+
+        private void _finishTrigger_OnTriggerExit(Collider collider)
+        {
+            if (collider.gameObject == _playerUnit)
+                inFinishTrigger = false;
         }
 
         void FixedUpdate()
         {
-            if (_playerUnit.transform.position.y < fallHeightTrigger)
+            if (!gameEnd)
             {
-                if (!gameEnd)
+                if (_playerUnit.transform.position.y < fallHeightTrigger)
                 {
                     OnPlayerFall?.Invoke();
+                    EndGame();
+                }
+
+                if (inFinishTrigger && Units.Count <= 1)
+                {
+                    OnEnterFinish?.Invoke();
                     EndGame();
                 }
             }
