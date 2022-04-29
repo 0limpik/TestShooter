@@ -4,12 +4,8 @@ namespace TestShooter.Input
 {
     internal class PlayerInputScript : MonoBehaviour
     {
-        public PlayerInput Input { get; private set; }
-
-        void Awake()
-        {
-            Input = new PlayerInput();
-        }
+        public static PlayerInput Input => _Input ??= new PlayerInput();
+        private static PlayerInput _Input;
 
         void OnEnable()
         {

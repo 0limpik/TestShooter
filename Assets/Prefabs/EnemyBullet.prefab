@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6823251167268239989}
   - component: {fileID: 1946228061167501356}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <KnockbackForce>k__BackingField: 500
   <KnockbackAngle>k__BackingField: 45
+  lifetime: 10
   _particleSystem: {fileID: 7050079191033520512}
+  shooter: {fileID: 0}
 --- !u!54 &-5626564802817443792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4887,7 +4889,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3b2fd38b834796848920920ad17d0c9f, type: 2}
+  - {fileID: 2100000, guid: a029179f735c69049993b77793cfab77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
