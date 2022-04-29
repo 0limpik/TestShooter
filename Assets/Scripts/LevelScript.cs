@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,11 +20,11 @@ namespace TestShooter.Scripts
 
         [SerializeField] private float restartLevelTime = 4f;
 
-        public UnitScript[] Units { get; private set; }
+        public List<UnitScript> Units { get; private set; }
 
         void Awake()
         {
-            Units = GameObject.FindObjectsOfType<UnitScript>();
+            Units = GameObject.FindObjectsOfType<UnitScript>().ToList();
             _finishTrigger.OnTrigger += FinishCollider_OnTrigger;
         }
 
@@ -50,6 +52,16 @@ namespace TestShooter.Scripts
                     OnPlayerFall?.Invoke();
                     EndGame();
                 }
+            }
+
+            foreach (var unit in Units.ToArray())
+            {
+                if (unit.gameObject != _playerUnit)
+                    if (unit.transform.position.y < fallHeightTrigger)
+                    {
+                        Destroy(unit.gameObject.transform.parent.gameObject);
+                        Units.Remove(unit);
+                    }
             }
         }
 
