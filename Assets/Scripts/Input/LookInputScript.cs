@@ -15,11 +15,6 @@ namespace TestShooter.Scripts.Input
 
         private Vector2 lookDelta;
 
-        void Awake()
-        {
-            lookDelta = new Vector2(_camera.transform.eulerAngles.x, _player.transform.eulerAngles.y);
-        }
-
         void OnEnable()
         {
             Cursor.lockState = CursorLockMode.Locked;
