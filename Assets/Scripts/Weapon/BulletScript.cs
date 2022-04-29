@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace TestShooter.Scripts.Weapon
 {
     [RequireComponent(typeof(MeshRenderer))]
     [RequireComponent(typeof(Rigidbody))]
@@ -10,9 +10,10 @@ namespace Assets.Scripts
     {
         [field: SerializeField] public float KnockbackForce { get; private set; } = 3f;
         [field: SerializeField] public float KnockbackAngle { get; private set; } = 45f;
+        [SerializeField] public float lifetime = 10f;
 
         private Vector3 shootPostion;
-        public Vector3 ShootDirection => (this.transform.position - shootPostion).normalized;
+        public Vector3 ShootDirection => (transform.position - shootPostion).normalized;
 
         private MeshRenderer _meshRenderer;
         private Rigidbody _rigidbody;
@@ -23,16 +24,19 @@ namespace Assets.Scripts
 
         void Awake()
         {
-            _meshRenderer = this.GetComponent<MeshRenderer>();
-            _rigidbody = this.GetComponent<Rigidbody>();
-            _collider = this.GetComponent<Collider>();
+            _meshRenderer = GetComponent<MeshRenderer>();
+            _rigidbody = GetComponent<Rigidbody>();
+            _collider = GetComponent<Collider>();
 
-            shootPostion = this.transform.position;
+            shootPostion = transform.position;
+
+            StartCoroutine(nameof(DestroyOutOfLifeTime));
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             StartCoroutine(nameof(Destroy));
+            StopCoroutine(nameof(DestroyOutOfLifeTime));
         }
 
         IEnumerator Destroy()
@@ -46,7 +50,14 @@ namespace Assets.Scripts
             {
                 yield return null;
             }
-            Destroy(this.gameObject);
+
+            Destroy(gameObject);
+        }
+
+        IEnumerator DestroyOutOfLifeTime()
+        {
+            yield return new WaitForSeconds(lifetime);
+            Destroy(gameObject);
         }
     }
 }

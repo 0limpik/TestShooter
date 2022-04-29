@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace TestShooter.Scripts.Weapon
 {
     [Serializable]
     internal class GunScript : MonoBehaviour
@@ -23,8 +23,8 @@ namespace Assets.Scripts
             if (lastShootTime + shootDelay < Time.time)
             {
                 lastShootTime = Time.time;
-                var bullet = GameObject.Instantiate(bulletPrefab, BulletSpawner.transform.position, BulletSpawner.transform.rotation);
-                bullet.shooter = this.shooter;
+                var bullet = Instantiate(bulletPrefab, BulletSpawner.transform.position, BulletSpawner.transform.rotation);
+                bullet.shooter = shooter;
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletSpeed, ForceMode.Impulse);
                 OnShoot?.Invoke();
             }

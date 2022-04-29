@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace TestShooter.Scripts
 {
     internal class LoggerScript : MonoBehaviour
     {
@@ -14,6 +14,7 @@ namespace Assets.Scripts
         private void Awake()
         {
             levelScript.OnStart += () => WriteMessage("Game Start");
+            levelScript.OnEnterFinish += () => WriteMessage("Player win");
             levelScript.OnPlayerFall += () => WriteMessage("Player fall");
 
             foreach (var unit in levelScript.units)

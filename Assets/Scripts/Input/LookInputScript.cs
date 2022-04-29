@@ -2,11 +2,10 @@ using TestShooter.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace TestShooter.Scripts
+namespace TestShooter.Scripts.Input
 {
     internal class LookInputScript : MonoBehaviour
     {
-        [SerializeField] private PlayerInputScript _input;
         [SerializeField] private GameObject _player;
         [SerializeField] private Camera _camera;
 
@@ -25,13 +24,13 @@ namespace TestShooter.Scripts
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            _input.Input.Look.Rotation.performed += CameraMovement;
+            PlayerInputScript.Input.Look.Rotation.performed += CameraMovement;
         }
         void OnDisable()
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            _input.Input.Look.Rotation.performed -= CameraMovement;
+            PlayerInputScript.Input.Look.Rotation.performed -= CameraMovement;
         }
 
         private void CameraMovement(InputAction.CallbackContext context)

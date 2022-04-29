@@ -1,21 +1,22 @@
-﻿using UnityEngine;
+﻿using TestShooter.Scripts.Movement;
+using UnityEngine;
 
-namespace Assets.Scripts
+namespace TestShooter.Scripts.Enemy
 {
     internal class PatrolScript : MonoBehaviour
     {
         [SerializeField] private Transform[] paths;
 
         private int pathIndex = 0;
+        private bool direciton;
 
-        [SerializeField] private GameObject _unit;
-         private Rigidbody _rigidbody;
+        [SerializeField] private MoveScript _moveScript;
 
         [Range(0f, 10f), SerializeField] private float speed = 3f;
 
         void Awake()
         {
-            _rigidbody = _unit.GetComponent<Rigidbody>();
+
         }
 
         void FixedUpdate()
@@ -23,17 +24,20 @@ namespace Assets.Scripts
             if (paths.Length == 0)
                 return;
 
-            var delta = paths[pathIndex].position - _unit.transform.position;
+            var delta = paths[pathIndex].position - _moveScript.transform.position;
             if (delta.magnitude <= speed * Time.fixedDeltaTime)
             {
-                pathIndex++;
-                if (pathIndex >= paths.Length)
+                pathIndex += direciton ? -1 : 1;
+                if (pathIndex >= paths.Length || pathIndex < 0)
                 {
-                    pathIndex = 0;
+                    direciton = !direciton;
+                    pathIndex += direciton ? -2 : 2;
                 }
             }
 
-            _rigidbody.MovePosition(_unit.transform.position + delta.normalized * speed * Time.fixedDeltaTime);
+            var distanse = new Vector2(delta.x, delta.z).normalized * speed;
+
+            _moveScript.distanse = distanse;
         }
 
         void OnDrawGizmos()

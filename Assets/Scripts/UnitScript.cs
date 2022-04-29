@@ -1,7 +1,8 @@
 ﻿using System;
+using TestShooter.Scripts.Weapon;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace TestShooter.Scripts
 {
     [RequireComponent(typeof(Rigidbody))]
     internal class UnitScript : MonoBehaviour

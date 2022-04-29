@@ -1,9 +1,9 @@
-﻿using Assets.Scripts;
-using TestShooter.Input;
+﻿using TestShooter.Input;
+using TestShooter.Scripts.Weapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace TestShooter.Scripts
+namespace TestShooter.Scripts.Input
 {
     [RequireComponent(typeof(GunScript))]
     internal class GunInputScript : MonoBehaviour
@@ -16,19 +16,19 @@ namespace TestShooter.Scripts
 
         void Awake()
         {
-            gun = this.GetComponent<GunScript>();
+            gun = GetComponent<GunScript>();
         }
 
         void OnEnable()
         {
-            _input.Input.Weapon.Shoot.started += Shoot_started; ;
-            _input.Input.Weapon.Shoot.canceled += Shoot_canceled;
+            PlayerInputScript.Input.Weapon.Shoot.started += Shoot_started; ;
+            PlayerInputScript.Input.Weapon.Shoot.canceled += Shoot_canceled;
         }
 
         void OnDisable()
         {
-            _input.Input.Weapon.Shoot.started -= Shoot_started;
-            _input.Input.Weapon.Shoot.canceled += Shoot_canceled;
+            PlayerInputScript.Input.Weapon.Shoot.started -= Shoot_started;
+            PlayerInputScript.Input.Weapon.Shoot.canceled += Shoot_canceled;
         }
 
         private void Shoot_canceled(InputAction.CallbackContext context)
