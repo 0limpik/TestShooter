@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="center" style="position: absolute; left: 25%; top: 25%; right: 25%; bottom: 25%; align-items: center; justify-content: center;">
+        <ui:VisualElement name="aim" style="align-items: center; justify-content: center;">
+            <ui:VisualElement name="up" style="width: 2px; height: 15px; background-color: rgb(255, 0, 0);" />
+            <ui:VisualElement name="center" style="flex-direction: row; align-items: center; justify-content: center;">
+                <ui:VisualElement name="left" style="width: 15px; height: 2px; background-color: rgb(255, 0, 0);" />
+                <ui:VisualElement name="center" style="width: 15px; height: 15px;" />
+                <ui:VisualElement name="right" style="width: 15px; height: 2px; background-color: rgb(255, 0, 0);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="down" style="background-color: rgb(255, 0, 0); width: 2px; height: 15px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
