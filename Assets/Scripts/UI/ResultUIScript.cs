@@ -8,7 +8,7 @@ namespace TestShooter.Scripts.UI
     internal class ResultUIScript : MonoBehaviour
     {
         private UIDocument document;
-        [SerializeField] private LevelScript level;
+        [SerializeField] private LevelScript _level;
 
         private const string WinMessage = "Win";
         private const string LoseMessage = "Lose";
@@ -21,8 +21,8 @@ namespace TestShooter.Scripts.UI
             messageLable = document.rootVisualElement.Q<Label>("message");
             messageLable.text = null;
 
-            level.OnEnterFinish += () => DisplayMessage(WinMessage, Color.green);
-            level.OnPlayerFall += () => DisplayMessage(LoseMessage, Color.red);
+            _level.OnEnterFinish += () => DisplayMessage(WinMessage, Color.green);
+            _level.OnPlayerFall += () => DisplayMessage(LoseMessage, Color.red);
         }
 
         public async void DisplayMessage(string message, Color color)

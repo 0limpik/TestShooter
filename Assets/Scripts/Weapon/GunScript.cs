@@ -9,9 +9,9 @@ namespace TestShooter.Scripts.Weapon
         public event Action OnShoot;
 
         [field: SerializeField] public Transform BulletSpawner { get; private set; }
-        [SerializeField] private BulletScript bulletPrefab;
+        [SerializeField] private BulletScript _bulletPrefab;
 
-        [SerializeField] private GameObject shooter;
+        [SerializeField] private GameObject _shooter;
 
         [Range(0f, 2.5f), SerializeField] private float shootDelay = 0.5f;
         private float lastShootTime;
@@ -23,8 +23,8 @@ namespace TestShooter.Scripts.Weapon
             if (lastShootTime + shootDelay < Time.time)
             {
                 lastShootTime = Time.time;
-                var bullet = Instantiate(bulletPrefab, BulletSpawner.transform.position, BulletSpawner.transform.rotation);
-                bullet.shooter = shooter;
+                var bullet = Instantiate(_bulletPrefab, BulletSpawner.transform.position, BulletSpawner.transform.rotation);
+                bullet.shooter = _shooter;
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletSpeed, ForceMode.Impulse);
                 OnShoot?.Invoke();
             }

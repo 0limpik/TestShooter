@@ -15,11 +15,6 @@ namespace TestShooter.Scripts.Input
 
         private Vector2 moveDirection;
 
-        void Awake()
-        {
-
-        }
-
         void OnEnable()
         {
             PlayerInputScript.Input.Moving.Move.performed += Move_performed;

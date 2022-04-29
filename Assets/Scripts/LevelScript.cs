@@ -12,18 +12,18 @@ namespace TestShooter.Scripts
         public event Action OnPlayerFall;
         private bool gameEnd;
 
-        [SerializeField] private GameObject player;
-        [SerializeField] private float deadHeightTrigger;
-        [SerializeField] private TriggerScript finishTrigger;
+        [SerializeField] private GameObject _player;
+        [SerializeField] private float fallHeightTrigger;
+        [SerializeField] private TriggerScript _finishTrigger;
 
         [SerializeField] private float restartLevelTime = 4f;
 
-        public UnitScript[] units { get; private set; }
+        public UnitScript[] Units { get; private set; }
 
         void Awake()
         {
-            units = GameObject.FindObjectsOfType<UnitScript>();
-            finishTrigger.OnTrigger += FinishCollider_OnTrigger;
+            Units = GameObject.FindObjectsOfType<UnitScript>();
+            _finishTrigger.OnTrigger += FinishCollider_OnTrigger;
         }
 
         void Start()
@@ -33,7 +33,7 @@ namespace TestShooter.Scripts
 
         private void FinishCollider_OnTrigger(Collider collider)
         {
-            if (collider.gameObject == player)
+            if (collider.gameObject == _player)
                 if (!gameEnd)
                 {
                     OnEnterFinish?.Invoke();
@@ -43,7 +43,7 @@ namespace TestShooter.Scripts
 
         void FixedUpdate()
         {
-            if (player.transform.position.y < deadHeightTrigger)
+            if (_player.transform.position.y < fallHeightTrigger)
             {
                 if (!gameEnd)
                 {

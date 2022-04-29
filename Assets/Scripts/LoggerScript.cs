@@ -6,18 +6,18 @@ namespace TestShooter.Scripts
 {
     internal class LoggerScript : MonoBehaviour
     {
-        [SerializeField] private LevelScript levelScript;
+        [SerializeField] private LevelScript _levelScript;
 
         [SerializeField] private bool writeToDebugConsole;
         [SerializeField] private string path;
 
-        private void Awake()
+        void Awake()
         {
-            levelScript.OnStart += () => WriteMessage("Game Start");
-            levelScript.OnEnterFinish += () => WriteMessage("Player win");
-            levelScript.OnPlayerFall += () => WriteMessage("Player fall");
+            _levelScript.OnStart += () => WriteMessage("Game Start");
+            _levelScript.OnEnterFinish += () => WriteMessage("Player win");
+            _levelScript.OnPlayerFall += () => WriteMessage("Player fall");
 
-            foreach (var unit in levelScript.units)
+            foreach (var unit in _levelScript.Units)
             {
                 unit.OnHit += (s) => WriteMessage($"{s.name} hitted by {unit.Owner.name}");
                 unit.GunScript.OnShoot += () => WriteMessage($"{unit.Owner.name} shoot");

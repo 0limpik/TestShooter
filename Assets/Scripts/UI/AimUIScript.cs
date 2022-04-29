@@ -6,7 +6,7 @@ namespace TestShooter.Scripts.UI
     [RequireComponent(typeof(UIDocument))]
     internal class AimUIScript : MonoBehaviour
     {
-        private UIDocument document;
+        private UIDocument _document;
 
         private Camera _camera;
 
@@ -19,10 +19,10 @@ namespace TestShooter.Scripts.UI
 
         void Awake()
         {
-            document = GetComponent<UIDocument>();
+            _document = GetComponent<UIDocument>();
             _camera = Camera.main;
 
-            var tree = document.rootVisualElement.Q("aim");
+            var tree = _document.rootVisualElement.Q("aim");
             up = tree.Q("up");
             down = tree.Q("down");
             left = tree.Q("left");

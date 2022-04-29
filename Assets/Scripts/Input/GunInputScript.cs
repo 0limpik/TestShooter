@@ -10,14 +10,9 @@ namespace TestShooter.Scripts.Input
     {
         [SerializeField] private PlayerInputScript _input;
 
-        private GunScript gun;
+        private GunScript _gun;
 
         private bool shoot;
-
-        void Awake()
-        {
-            gun = GetComponent<GunScript>();
-        }
 
         void OnEnable()
         {
@@ -45,7 +40,7 @@ namespace TestShooter.Scripts.Input
         {
             if (shoot)
             {
-                gun.Shoot();
+                _gun.Shoot();
             }
         }
     }

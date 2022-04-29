@@ -11,11 +11,6 @@ namespace TestShooter.Scripts.Input
 
         [Range(0f, 1000f), SerializeField] private float jumpForse = 300;
 
-        void Awake()
-        {
-
-        }
-
         void OnEnable()
         {
             PlayerInputScript.Input.Moving.Jump.performed += Jump_performed;
