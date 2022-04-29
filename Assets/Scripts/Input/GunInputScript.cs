@@ -8,11 +8,14 @@ namespace TestShooter.Scripts.Input
     [RequireComponent(typeof(GunScript))]
     internal class GunInputScript : MonoBehaviour
     {
-        [SerializeField] private PlayerInputScript _input;
-
         private GunScript _gun;
 
         private bool shoot;
+
+        void Awake()
+        {
+            _gun = this.GetComponent<GunScript>();
+        }
 
         void OnEnable()
         {

@@ -7,9 +7,8 @@ namespace TestShooter.Scripts.Input
 {
     internal class MovementInputScript : MonoBehaviour
     {
-        [SerializeField] private PlayerInputScript _input;
         [SerializeField] private MoveScript _moveScript;
-        [SerializeField] private GameObject _player;
+        [SerializeField] private GameObject _playerUnit;
 
         [Range(0f, 10f), SerializeField] private float speed = 3f;
 
@@ -34,8 +33,8 @@ namespace TestShooter.Scripts.Input
 
         void FixedUpdate()
         {
-            var move = _player.transform.right * moveDirection.x
-                + _player.transform.forward * moveDirection.y;
+            var move = _playerUnit.transform.right * moveDirection.x
+                + _playerUnit.transform.forward * moveDirection.y;
 
             var distanse = new Vector2(move.x, move.z) * speed;
 

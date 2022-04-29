@@ -6,8 +6,8 @@ namespace TestShooter.Scripts.Input
 {
     internal class LookInputScript : MonoBehaviour
     {
-        [SerializeField] private GameObject _player;
-        [SerializeField] private Camera _camera;
+        [SerializeField] private GameObject _playerUnit;
+        private Camera _camera;
 
         [Range(1f, 15f), SerializeField] private float sensivityX = 5f;
         [Range(1f, 15f), SerializeField] private float sensivityY = 5f;
@@ -15,12 +15,18 @@ namespace TestShooter.Scripts.Input
 
         private Vector2 lookDelta;
 
+        void Awake()
+        {
+            _camera = Camera.main;
+        }
+
         void OnEnable()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             PlayerInputScript.Input.Look.Rotation.performed += CameraMovement;
         }
+
         void OnDisable()
         {
             Cursor.lockState = CursorLockMode.None;
@@ -36,7 +42,7 @@ namespace TestShooter.Scripts.Input
 
         void Update()
         {
-            _player.transform.Rotate(new Vector3(0f, lookDelta.x, 0f));
+            _playerUnit.transform.Rotate(new Vector3(0f, lookDelta.x, 0f));
 
             var x = _camera.transform.rotation.eulerAngles.x;
             x = x < 180 ? x : (360 - x) * -1;

@@ -9,7 +9,6 @@ namespace TestShooter.Scripts
         [SerializeField] private LevelScript _levelScript;
 
         [SerializeField] private bool writeToDebugConsole;
-        [SerializeField] private string path;
 
         void Awake()
         {

@@ -12,7 +12,7 @@ namespace TestShooter.Scripts
         public event Action OnPlayerFall;
         private bool gameEnd;
 
-        [SerializeField] private GameObject _player;
+        [SerializeField] private GameObject _playerUnit;
         [SerializeField] private float fallHeightTrigger;
         [SerializeField] private TriggerScript _finishTrigger;
 
@@ -33,7 +33,7 @@ namespace TestShooter.Scripts
 
         private void FinishCollider_OnTrigger(Collider collider)
         {
-            if (collider.gameObject == _player)
+            if (collider.gameObject == _playerUnit)
                 if (!gameEnd)
                 {
                     OnEnterFinish?.Invoke();
@@ -43,7 +43,7 @@ namespace TestShooter.Scripts
 
         void FixedUpdate()
         {
-            if (_player.transform.position.y < fallHeightTrigger)
+            if (_playerUnit.transform.position.y < fallHeightTrigger)
             {
                 if (!gameEnd)
                 {

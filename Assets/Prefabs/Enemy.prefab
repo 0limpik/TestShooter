@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a12ff5ffdb4dc14798c707b4adc4ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paths: []
+  _paths: []
   _moveScript: {fileID: 8162602935612069539}
   speed: 3.5
 --- !u!1001 &7955819918072567177
@@ -180,8 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3a1d11995a4a7409fe0ef59a04d53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unit: {fileID: 3636434814688400403}
-  _player: {fileID: 0}
+  _playerUnit: {fileID: 0}
   distanseHeightModifuer: 0.1
 --- !u!1001 &7955819918586119220
 PrefabInstance:
@@ -200,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 3381723835766432339}
     - target: {fileID: 6638295005717860389, guid: 51f90c14f6491814e8fec2e05ba76274, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6638295005717860389, guid: 51f90c14f6491814e8fec2e05ba76274, type: 3}
       propertyPath: m_Materials.Array.data[0]
