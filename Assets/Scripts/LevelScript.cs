@@ -70,8 +70,8 @@ namespace TestShooter.Scripts
                 if (unit.gameObject != _playerUnit)
                     if (unit.transform.position.y < fallHeightTrigger)
                     {
-                        Destroy(unit.gameObject.transform.parent.gameObject);
                         Units.Remove(unit);
+                        Destroy(unit.gameObject.transform.parent.gameObject);
                     }
             }
         }

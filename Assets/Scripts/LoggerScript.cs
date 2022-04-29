@@ -18,8 +18,8 @@ namespace TestShooter.Scripts
 
             foreach (var unit in _levelScript.Units)
             {
-                unit.OnHit += (s) => WriteMessage($"{s.name} hitted by {unit.Owner.name}");
-                unit.GunScript.OnShoot += () => WriteMessage($"{unit.Owner.name} shoot");
+                unit.OnHit += (s) => WriteMessage($"{s.name} hitted by {unit?.Owner.name}");
+                unit.GunScript.OnShoot += () => WriteMessage($"{unit?.Owner.name} shoot");
             }
         }
 
