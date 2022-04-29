@@ -2674,7 +2674,7 @@ PrefabInstance:
     - target: {fileID: 4649557566985418714, guid: a2628dbb3bce44e40885fd412ee8871d, type: 3}
       propertyPath: shooter
       value: 
-      objectReference: {fileID: 2002645351}
+      objectReference: {fileID: 537246670}
     - target: {fileID: 4649557566985418714, guid: a2628dbb3bce44e40885fd412ee8871d, type: 3}
       propertyPath: bulletSpeed
       value: 40
