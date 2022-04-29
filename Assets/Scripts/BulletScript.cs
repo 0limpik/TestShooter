@@ -19,6 +19,8 @@ namespace Assets.Scripts
         private Collider _collider;
         [SerializeField] private ParticleSystem _particleSystem;
 
+        public GameObject shooter;
+
         void Awake()
         {
             _meshRenderer = this.GetComponent<MeshRenderer>();

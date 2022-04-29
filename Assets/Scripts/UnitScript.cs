@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(Rigidbody))]
     internal class UnitScript : MonoBehaviour
     {
+        public event Action<GameObject> OnHit;
+
         private Rigidbody _rigidbody;
+        [field: SerializeField] public GameObject Owner { get; private set; }
+        [field: SerializeField] public GunScript GunScript { get; private set; }
 
         void Awake()
         {
@@ -22,6 +27,7 @@ namespace Assets.Scripts
                 var rightDirection = Quaternion.AngleAxis(90, Vector3.up) * flatDirection;
                 var direction = Quaternion.AngleAxis(360 - bullet.KnockbackAngle, rightDirection) * flatDirection;
                 _rigidbody.AddForce(direction * bullet.KnockbackForce, ForceMode.Impulse);
+                OnHit?.Invoke(bullet.shooter);
             }
         }
     }

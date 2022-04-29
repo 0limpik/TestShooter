@@ -10,7 +10,7 @@ namespace TestShooter.Scripts
     {
         [SerializeField] private PlayerInputScript _input;
 
-        [SerializeField] private GunScript gun;
+        private GunScript gun;
 
         private bool shoot;
 
@@ -48,6 +48,5 @@ namespace TestShooter.Scripts
                 gun.Shoot();
             }
         }
-
     }
 }
